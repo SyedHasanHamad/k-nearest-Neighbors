@@ -1,22 +1,9 @@
----
-title: "Assignment 1"
-author: "Syed Hasan Hamad"
-date: "2023-08-23"
-output:
-  pdf_document: default
-  html_document: default
----
-
-
-```{r install libraries}
 install.packages("dplyr")
 install.packages("ggplot2")
 install.packages("class")
 install.packages("glmnet")
-```
 
 
-```{r EDA}
 library(dplyr)
 library(ggplot2)
 
@@ -59,8 +46,7 @@ for (i in seq_along(rowindices)) {
 }
 
 par(mfrow = c(1, 1))  # Reset the layout
-```
-```{r LR classifcation}
+
 # Load necessary libraries
 library(glmnet)
 library(class)
@@ -80,8 +66,6 @@ y1pred.train <- ifelse(pred1.train >= 4.5, 7, 2)
 linear_training_error <- mean(y1pred.train != ziptrain27[, 1])
 print(linear_training_error)
 
-```
-```{r knn classification}
 library(class)
 
 k_values <- c(1, 3, 5, 7, 9, 11, 13, 15)
@@ -93,10 +77,6 @@ for (i in seq_along(k_values)) {
   training_errors_knn[i] <- mean(ypred2.train != ziptrain27[, 1])
   cat("KNN Training Error (k =", k, "):", training_errors_knn[i], "\n")
 }
-
-```
-
-```{r testing errors LR}
 
 
 # Load necessary libraries
@@ -129,9 +109,7 @@ linear_testing_error <- mean(linear_predicted_classes_test != binary_labels_test
 print(paste("Logistic Regression Testing Error:", linear_testing_error))
 
 
-```
 
-```{r testing error knn, echo=TRUE}
 library(class)
 
 # Initialize k values
@@ -161,9 +139,7 @@ for (i in seq_along(k_values)) {
 }
 
 
-```
 
-```{r cross validaitaion(takes time to run)}
 # Load necessary libraries
 library(class)
 
@@ -220,7 +196,6 @@ for (i in seq_along(mean_testing_errors)) {
   print(paste("Variance of Testing Error for Model", i, ":", var_testing_errors[i]))
 }
 
-```
 
 
 
